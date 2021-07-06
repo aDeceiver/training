@@ -1,0 +1,17 @@
+<div class="container" *ngIf="dataLoaded">
+    <table class="table table-hover table-bordered table-responsive">
+        <thead>
+          <tr>
+            <th *ngFor="let key of studentRecords[0]| appProperties" (click)="sortColumn(key)">{{key}}
+              <span *ngIf="sortingColumn === key" class="float-right"><i [class]="sortingOrder === SortingOrder.DEFAULT ? 'fa fa-unsorted': (sortingOrder === SortingOrder.ASC ? 'fa fa-sort-asc':'fa fa-sort-desc')"></i></span>
+              <span *ngIf="sortingColumn !== key" class="float-right"><i class="fa fa-unsorted"></i></span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let record of studentRecords">
+            <td *ngFor="let key of record|appProperties">{{record[key]}}</td>
+          </tr>
+        </tbody>
+      </table>    
+</div>

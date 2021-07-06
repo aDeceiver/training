@@ -1,0 +1,23 @@
+.viewport {
+    height: 350px;
+    // width: 200px;
+    border: 1px solid black;
+    text-align: center;
+    div{
+        height: 200px;
+        width: 200px;
+        margin-bottom: 20px;
+    border: 1px solid black;
+
+    }
+  }
+
+ .alternate {
+    background: rgba(127, 127, 127, 0.3);
+  }
+  .button-list{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }

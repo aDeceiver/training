@@ -1,0 +1,11 @@
+<div class="container">
+    <cdk-virtual-scroll-viewport itemSize="200" 
+                                 class="viewport">
+      <div *cdkVirtualFor="let item of items; let index = index; let odd = odd;" [class.alternate]="odd">
+          <div class="item button-list">
+            <h3>{{item}}</h3>
+            <button (click)="buttonClicked(index)">{{item}}</button> 
+          </div>
+      </div>
+    </cdk-virtual-scroll-viewport>
+</div>

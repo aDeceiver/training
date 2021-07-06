@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="controls">
+        <div class="controls-dropdown">
+            <select class="controls-dropdown-price" [(ngModel)]="selectedValue">
+                <option value=0>PRICE: LOW TO HIGH</option>
+                <option value=1>PRICE: HIGH TO LOW</option>
+              </select>
+        </div>
+        <div class="controls-buttons">
+            <i class="fa fa-th fa-2x" aria-hidden="true" (click)="toggleView(true)"></i>
+            <div class="controls-buttons-separator">|</div>
+            <i class="fa fa-list fa-2x" aria-hidden="true" (click)="toggleView(false)"></i>
+        </div>
+    </div>
+
+    <div class="container row">
+        <div *ngFor="let product of productList | mysort: selectedValue " [class]="gridView?'col-md-3':'col-md-6'">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.id}}</h5>
+                    <p class="card-text">{{product.name}}</p>
+                    <button class="btn btn-primary">Price: {{product.price}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>

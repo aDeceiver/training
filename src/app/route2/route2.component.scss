@@ -1,0 +1,28 @@
+.col-md-3 ,.col-md-6{
+    margin-bottom: 5px;
+}
+.controls {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 90%;
+    height: 42px;
+    margin-bottom: 20px;
+    &-buttons{
+        display: flex;
+        background-color: yellow;
+        border: 1px solid black;
+        border-radius: 4px;
+        padding: 0px 5px 0px 5px;
+        margin-right: 20px;
+        &-separator{
+            font-size: 12px;
+            background-color: black;
+        }
+        i{
+            padding: 5px 5px 0px 5px;
+        }
+    }
+    &-dropdown-price {
+        height: 100%;
+    }
+}
