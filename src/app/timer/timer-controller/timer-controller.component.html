@@ -1,0 +1,13 @@
+<div class="contaner">
+    <div>
+        <label for="timelimit">Enter Time Limit:  </label>
+        <input id="timelimit" type="text" (blur)="resetTimer()" [(ngModel)]="timeLimit">
+    </div>
+    <div>
+        <button type="button" (click)="startTimer()">Start/Pause</button>
+        <button type="button" (click)="resetTimer()">Reset</button>
+    </div>
+    <div class="pause-details">
+        <h4 *ngFor="let detail of timerPauseDetails" [@slideInOut]> Paused at {{detail}}</h4>
+    </div>
+</div>

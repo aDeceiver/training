@@ -1,18 +1,18 @@
 import { trigger, state, style, transition, animate, keyframes } from '@angular/animations';
 export const sharedAnimate =
 [
-  trigger('openClose', [
+  trigger('colorChange', [
     // ...
-    state('open', style({
+    state('green', style({
+      color: 'green'
+    })),
+    state('red', style({
       color: 'red'
     })),
-    state('closed', style({
-      color: 'yellow'
-    })),
-    transition('open => closed', [
+    transition('green => red', [
       animate('1s')
     ]),
-    transition('closed => open', [
+    transition('red => green', [
       animate('0.5s')
     ]),
   ]),

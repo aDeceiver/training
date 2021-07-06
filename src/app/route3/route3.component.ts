@@ -15,18 +15,26 @@ export class Route3Component implements OnInit {
   timerDetails: number[] =[];
   startCount=0;
   pausedCount=0;
+  counterStartValue = 0;
 
   constructor() { }
 
   ngOnInit(): void {
   }
   pausedAt(val:number) {
+    this.counterStartValue = val;
     this.timerDetails.push(val);
   }
   timerControl(value: any) {
     console.log(value);
     this.timerController = value.timer;
     this.timeLimits = value.timeLimit;
+    if(value.initialTimer) {
+    this.child.counter = this.timeLimits;
+    }
+    if(this.counterStartValue === 0) {
+      this.counterStartValue = this.timeLimits;
+    }
     if(!this.timerController) {
     this.child.emitCounterValue();
     this.pausedCount++;
