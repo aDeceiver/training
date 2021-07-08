@@ -1,9 +1,9 @@
 <div class="container">
     <div class="controls">
         <div class="controls-dropdown">
-            <select class="controls-dropdown-price" [(ngModel)]="selectedValue">
-                <option *ngFor="let options of sortingOptions" [value]=options>{{options}}</option>
-              </select>
+            <select class="controls-dropdown-price" [(ngModel)]="selectedSortOrder">
+                <option *ngFor="let option of options" [value]="option.value">{{option.label}}</option>
+            </select>
         </div>
         <div class="controls-buttons">
             <i class="fa fa-th fa-2x" aria-hidden="true" (click)="toggleView(true)"></i>
@@ -13,7 +13,8 @@
     </div>
 
     <div class="container row">
-        <div *ngFor="let product of productList | mysort: selectedValue " [class]="gridView?'col-md-3 col-sm-3 cards':'col-md-6 col-sm-6 cards'">
+        <div *ngFor="let product of productList | mysort: selectedSortOrder "
+            [class]="gridView?'col-md-3 col-sm-3 cards':'col-md-6 col-sm-6 cards'">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{product.id}}</h5>
@@ -23,5 +24,5 @@
             </div>
         </div>
     </div>
-    
+
 </div>

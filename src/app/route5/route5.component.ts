@@ -42,13 +42,13 @@ export class Route5Component implements OnInit {
     this.sortingColumn = column;
     switch (this.sortingOrder) {
       case SortingOrder.ASC:
-        this.studentRecords.sort(this.sortAlphaNum.bind(this))
+        this.studentRecords.sort(this.sortAlphaNum)
 
         // this.studentRecords.sort((a, b) => a[column] > b[column] ? 1 : a[column] < b[column] ? -1 : 0)
         break;
 
       case SortingOrder.DSC:
-        this.studentRecords.sort(this.sortAlphaNum.bind(this))
+        this.studentRecords.sort(this.sortAlphaNum)
 
         // this.studentRecords.sort((a, b) => a[column] < b[column] ? 1 : a[column] > b[column] ? -1 : 0)
       
@@ -61,7 +61,7 @@ export class Route5Component implements OnInit {
     }
   }
 
-  sortAlphaNum(a, b) {
+  sortAlphaNum = (a, b) => {
     let aA = a[this.sortingColumn].toString().replace(this.reA, "");
     let bA = b[this.sortingColumn].toString().replace(this.reA, "");
     if (aA === bA) {

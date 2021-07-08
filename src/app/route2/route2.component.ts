@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SortingOption } from './enum/route2.enum';
-import { Product } from './model';
+import { SortOrder } from './enum/route2.enum';
+import { Product, SortOption } from './model';
 import { ProductsList } from './stub';
 
 @Component({
@@ -10,14 +10,15 @@ import { ProductsList } from './stub';
 })
 export class Route2Component implements OnInit {
 
-  productList: Product[] = ProductsList; 
+  productList: Product[] = ProductsList;
   gridView = true;
-  sortingOptions = SortingOption;
-  selectedValue = SortingOption[0];
+  options: SortOption[];
+  selectedSortOrder = SortOrder.ASCENDING;
+
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.productList);
+    this.options = [{ label: "PRICE: LOW TO HIGH", value: SortOrder.ASCENDING }, { label: "PRICE: HIGH TO LOW", value: SortOrder.DESCENDING }]
   }
 
   toggleView(view: boolean) {
