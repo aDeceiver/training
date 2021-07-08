@@ -2,8 +2,7 @@
     <div class="controls">
         <div class="controls-dropdown">
             <select class="controls-dropdown-price" [(ngModel)]="selectedValue">
-                <option value=0>PRICE: LOW TO HIGH</option>
-                <option value=1>PRICE: HIGH TO LOW</option>
+                <option *ngFor="let options of sortingOptions" [value]=options>{{options}}</option>
               </select>
         </div>
         <div class="controls-buttons">
@@ -14,7 +13,7 @@
     </div>
 
     <div class="container row">
-        <div *ngFor="let product of productList | mysort: selectedValue " [class]="gridView?'col-md-3 cards':'col-md-6 cards'">
+        <div *ngFor="let product of productList | mysort: selectedValue " [class]="gridView?'col-md-3 col-sm-3 cards':'col-md-6 col-sm-6 cards'">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{product.id}}</h5>

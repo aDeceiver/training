@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Timer } from '../models/route4.model';
 import { Route4Service } from '../route4.service';
 
 @Component({
@@ -30,14 +31,16 @@ export class Component1Component implements OnInit,OnDestroy {
   }
 
   ngOnInit(): void {
-    this.resetSub = this.route4Service.timerReset.subscribe((data) => this.resetCounter(data));
+    this.resetSub = this.route4Service.timerReset.subscribe((data) => this.resetCounter());
     this.timeControlSub = this.route4Service.timerControl.subscribe((data) => this.timerControl(data));
   }
 
-  timerControl(value: any) {
-    console.log(value);
+  timerControl(value: Timer) {
+    if(value.isInitialStart) {
+      this.counter = value.timeLimit;
+      this.startInterval();
+    }
     this.startCounter = value.timer;
-    this.timeLimit = value.timeLimit;
     if(!this.startCounter) {
       this.route4Service.counterValue.next(this.counter);
     }
@@ -46,18 +49,25 @@ export class Component1Component implements OnInit,OnDestroy {
     console.log(this.counter);
     if(this.startCounter){
       if(this.counter === 0) {
-        this.resetCounter([this.timeLimit, false]);
+        this.timerComplete();
         return;
       }
       this.counter--;
     }
   }
-  resetCounter(limit: any) {
-    if(limit[1]){
-      this.interval = setInterval(this.updateCounter.bind(this), 1000);
-    }
-    this.startCounter = false;
+  timerComplete() {
     this.route4Service.timerComplete.next();
-    this.counter = limit[0];
+    this.stopInterval();
+  }
+  resetCounter() {
+    this.startCounter = false;
+    this.counter = 0;
+    this.stopInterval();
+  }
+  stopInterval() {
+    clearInterval(this.interval);
+  }
+  startInterval() {
+    this.interval = setInterval(this.updateCounter.bind(this), 1000);
   }
 }

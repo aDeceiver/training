@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Timer } from '../models/route4.model';
 import { Route4Service } from '../route4.service';
 
 @Component({
@@ -13,27 +14,32 @@ export class Component2Component implements OnInit, OnDestroy {
   timerDetails: number[] =[];
   currentCounteValSub: Subscription = null;
   timerCompSub: Subscription = null;
-
+  isInitialStart= true;
   constructor(public route4Service: Route4Service) { }
 
   ngOnInit(): void {
-    this.route4Service.timerReset.next([this.timeLimit,true]);
+    // this.route4Service.timerReset.next([this.timeLimit,true]);
     this.currentCounteValSub = this.route4Service.counterValue.subscribe((data: number) => this.timerDetails.push(data));
-    this.timerCompSub = this.route4Service.timerComplete.subscribe(() => this.timer = false);
+    this.timerCompSub = this.route4Service.timerComplete.subscribe(() => {
+      this.timer = false;
+      this.isInitialStart = true;
+    });
   }
   startTimer(){
     if(this.timeLimit < 1) {
       alert("Enter valid time limit")
     } else {
       this.timer=!this.timer;
-      this.route4Service.timerControl.next(new Timer(this.timer, this.timeLimit));
+      this.route4Service.timerControl.next(new Timer(this.timer, this.timeLimit, this.isInitialStart));
+      this.isInitialStart = false;
     }
 
   }
   resetTimer() {
     this.timer = false;
     this.timerDetails = [];
-    this.route4Service.timerReset.next([this.timeLimit,false]);
+    this.isInitialStart = true;
+    this.route4Service.timerReset.next();
   }
   ngOnDestroy(): void {
 
@@ -46,7 +52,3 @@ export class Component2Component implements OnInit, OnDestroy {
   }
 }
 
-export class Timer{
-  constructor(public timer: boolean,public timeLimit: number){ 
-   }
-}

@@ -21,18 +21,20 @@ export class TimerComponent implements OnInit, OnDestroy {
   constructor() { }
 
   ngOnInit(): void {
-    this.interval = setInterval(this.updateCounter.bind(this), 1000);
   }
   resetTimer() {
     this.controlLogs.push(['Reset at ', new Date()]);
+    this.timerPauseDetails = [];
     this.counterState = false;
     this.counter = 0;
     this.counterComplete = true;
+    this.stopInterval();
   }
   updateCounter() {
     console.log(this.counter);
     if(this.counterState){
       if(this.counter === 0) {
+        this.stopInterval();
         this.counterComplete = true;
         this.counterState = false;
         return;
@@ -51,10 +53,17 @@ export class TimerComponent implements OnInit, OnDestroy {
       this.controlLogs.push(['Started at ' , new Date()]);
     }
     if(timerApp.isInitialStart) {
+      this.startInterval();
       this.counterComplete =false;
       this.counter = timerApp.startValue;
     }
 
+  }
+  stopInterval() {
+    clearInterval(this.interval);
+  }
+  startInterval() {
+    this.interval = setInterval(this.updateCounter.bind(this), 1000);
   }
   ngOnDestroy(): void {
     if(this.interval) {

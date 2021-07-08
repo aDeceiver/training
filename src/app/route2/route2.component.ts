@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SortingOption } from './enum/route2.enum';
 import { Product } from './model';
 import { ProductsList } from './stub';
 
@@ -11,7 +12,8 @@ export class Route2Component implements OnInit {
 
   productList: Product[] = ProductsList; 
   gridView = true;
-  selectedValue = 0;
+  sortingOptions = SortingOption;
+  selectedValue = SortingOption[0];
   constructor() { }
 
   ngOnInit(): void {
