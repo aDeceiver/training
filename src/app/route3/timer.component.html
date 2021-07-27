@@ -7,7 +7,9 @@
             <app-timer-controller (timerReset)="resetTimer()" (timerStateControl)="timerStateControl($event)" [isInitialStart] ="counterComplete" [timerPauseDetails]="timerPauseDetails"></app-timer-controller>
         </div>
         <div class="col-md-5">
-            <app-timer-logs [controlLogs] ="controlLogs"></app-timer-logs>
+            <app-timer-logs [controlLogs] ="controlLogs">
+                
+            </app-timer-logs>
         </div>
         <div class="col-md-5 left-margin">
             <app-timer-count [startCount]="startCount" [pausedCount]="pausedCount"></app-timer-count>

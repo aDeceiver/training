@@ -6,15 +6,16 @@
             </select>
         </div>
         <div class="controls-buttons">
-            <i class="fa fa-th fa-2x" aria-hidden="true" (click)="toggleView(true)"></i>
+            <i class="fa fa-th fa-2x" role="button" tabindex="0" (click)="toggleView(true)"></i>
             <div class="controls-buttons-separator">|</div>
-            <i class="fa fa-list fa-2x" aria-hidden="true" (click)="toggleView(false)"></i>
+            <i class="fa fa-list fa-2x" (click)="toggleView(false)"></i>
         </div>
     </div>
 
     <div class="container row">
         <div *ngFor="let product of productList | mysort: selectedSortOrder "
-            [class]="gridView?'col-md-3 col-sm-3 cards':'col-md-6 col-sm-6 cards'">
+        [class]="gridView?'col-md-3 col-sm-3 cards':'col-md-6 col-sm-6 cards'">
+            <!-- class="col-md-6 col-sm-3 col-lg-12 cards''"> -->
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{product.id}}</h5>
@@ -23,6 +24,10 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="container">
+        <button (click)="moveNext()">Move to next Route</button>
     </div>
 
 </div>

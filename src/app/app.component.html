@@ -1,4 +1,5 @@
 <div class="container">
+    <a href="javascript:undefined" class="bypass-link" (click)="movefocus()">skip to main content</a>
     <div class="container">
         <ul class="nav nav-tabs">
             <li class=""><button routerLink="/route1">Box App</button></li>
@@ -9,5 +10,7 @@
             <li><button routerLink="/route6">Virtual Scrolling App</button></li>
           </ul>
     </div>
-    <router-outlet></router-outlet>
+    <main id="main" tabindex="0">
+        <router-outlet></router-outlet>
+    </main>
 </div>

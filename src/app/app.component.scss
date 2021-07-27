@@ -2,3 +2,11 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+.bypass-link{
+    opacity: 0;
+    visibility: visible;
+}
+.bypass-link:focus{
+    opacity: 1;
+    visibility: visible;
+}

@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+// $grid-breakpoints: (
+//   xs: 0,
+//   sm: 576px,
+//   md: 768px,
+//   lg: 1000px,
+//   xl: 1200px,
+//   xxl: 1400px
+// );
+
+// $border : 10px solid;
+// $border : 11px solid !default;
+
+
+// $grid-columns: 12 !default;
+// $grid-gutter-width: 30px !default;
+@import "./node_modules/bootstrap/scss/bootstrap.scss";

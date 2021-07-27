@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'training';
+  title = "training";
+  movefocus(){
+    document.getElementById("main").focus();
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -8,7 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Route4Component implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private acti: ActivatedRoute) { 
+    if(this.router.getCurrentNavigation().extras){
+      const data = this.router.getCurrentNavigation().extras.state;
+      console.log('data  ', data);
+    }
+  }
   ngOnInit(): void {
   }
 }

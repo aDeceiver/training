@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SortOrder } from './enum/route2.enum';
 import { Product, SortOption } from './model';
 import { ProductsList } from './stub';
@@ -15,7 +16,7 @@ export class Route2Component implements OnInit {
   options: SortOption[];
   selectedSortOrder = SortOrder.ASCENDING;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.options = [{ label: "PRICE: LOW TO HIGH", value: SortOrder.ASCENDING }, { label: "PRICE: HIGH TO LOW", value: SortOrder.DESCENDING }]
@@ -23,5 +24,10 @@ export class Route2Component implements OnInit {
 
   toggleView(view: boolean) {
     this.gridView = view;
+  }
+  moveNext() {
+    this.router.navigate(['/route4'], {state: {
+      frontend: "New York "
+    }});
   }
 }
